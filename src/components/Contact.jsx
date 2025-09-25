@@ -1,6 +1,4 @@
 // src/components/Contact.jsx
-import React from "react";
-
 const Contact = () => {
   return (
     <div className="app">

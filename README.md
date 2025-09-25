@@ -1,18 +1,26 @@
-# React + Vite
+# JobBuster
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+JobBuster is a React-based web application designed to help users search and track job opportunities in a clean, modern interface.  
+It features a **Home page** with a job listings section, an **About page** with app details, and a **Contact page** for reaching out.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+- **Responsive design** that looks great on laptops and smaller screens
+- **Navigation bar** with Home, About, and Contact links
+- **Hero section** on every page for consistent branding
+- **Job listings cards** with apply buttons and status indicators
+- **Interactive hover effects** (cards lift and glow on hover)
+- **Contact page** with profile image and clickable email link
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
+- **React** (via Vite)
+- **React Router DOM** for page navigation
+- **CSS** for styling and responsive layout
+- **Git + GitHub** for version control
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# JobBuster_final
-# JobBuster_final
+## 📂 Project Structure
