@@ -1,0 +1,187 @@
+/* Make sure root and body take full width/height and allow centering */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center the app container horizontally no matter what other styles exist */
+body {
+  display: flex;
+  justify-content: center; /* horizontally center #root / .app */
+  background: #fff;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+/* React mounts into #root; ensure it can center children too */
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Your main app container — keeps content a reasonable width on laptops */
+.app {
+  width: 100%;
+  max-width: 1100px;   /* keeps the page narrow enough for laptop screens */
+  margin: 0 auto;      /* fallback centering */
+  padding: 0 20px;     /* side padding on narrow screens */
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  cursor: pointer;
+}
+
+.signup-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+  font-size: 16px;
+}
+
+.search-box {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap; /* stacks on narrow widths */
+}
+
+/* Make sure inputs are light and not accidentally dark */
+.search-box input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 220px;
+  background: #fff;  /* force white background */
+  color: #222;       /* force readable text color */
+  outline: none;
+  box-shadow: none;
+}
+
+.search-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Job Listings */
+.job-listings {
+  margin: 40px 0;
+}
+
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: #fff;
+}
+
+.job-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.job-icon {
+  width: 50px;
+  height: 50px;
+  background: #bbb;
+  border-radius: 6px;
+}
+
+.job-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+}
+
+.status.verified {
+  background: #22c55e; /* green */
+}
+
+.status.warning {
+  background: #f59e0b; /* orange */
+}
+
+.apply-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 28px; }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .job-actions {
+    align-self: flex-end;
+  }
+}

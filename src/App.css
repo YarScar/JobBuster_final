@@ -1,0 +1,255 @@
+/* Make sure root and body take full width/height and allow centering */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Center the app container horizontally no matter what other styles exist */
+body {
+  display: flex;
+  justify-content: center; /* horizontally center #root / .app */
+  background: #fff;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+/* React mounts into #root; ensure it can center children too */
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Your main app container — keeps content a reasonable width on laptops */
+.app {
+  width: 100%;
+  max-width: 1100px;   /* keeps the page narrow enough for laptop screens */
+  margin: 0 auto;      /* fallback centering */
+  padding: 0 20px;     /* side padding on narrow screens */
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;   /* removes underline */
+  color: #000;             /* black text */
+  font-weight: 500;        /* medium weight, similar to button text */
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #2563eb;          /* blue hover color for feedback */
+}
+
+.signup-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+  font-size: 16px;
+}
+
+.search-box {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap; /* stacks on narrow widths */
+}
+
+/* Make sure inputs are light and not accidentally dark */
+.search-box input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 220px;
+  background: #fff;  /* force white background */
+  color: #222;       /* force readable text color */
+  outline: none;
+  box-shadow: none;
+}
+
+.search-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Job Listings */
+.job-listings {
+  margin: 40px 0;
+}
+
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #dad9d9;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+/* Hover effect with blue glow */
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); /* blue glow */
+  border-color: #2563eb; /* matches glow */
+}
+
+.job-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.job-icon {
+  width: 50px;
+  height: 50px;
+  background: #bbb;
+  border-radius: 6px;
+}
+
+.job-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+}
+
+.status.verified {
+  background: #22c55e; /* green */
+}
+
+.status.warning {
+  background: #f59e0b; /* orange */
+}
+
+.apply-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 28px; }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .job-actions {
+    align-self: flex-end;
+  }
+}
+
+/* About Section styling */
+.info-card {
+  padding: 20px;
+  border: 2px solid #dad9d9;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+/* Hover effect with blue glow */
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); /* blue glow */
+  border-color: #2563eb; /* matches glow */
+}
+
+/* Contact page */
+.contact-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.contact-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4); /* subtle blue glow */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+/* Hover effect with blue glow */
+.contact-image:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); /* blue glow */
+}
+
+.contact-email {
+  display: block;       /* makes it act like the old <p> */
+  font-size: 18px;
+  color: #2563eb;
+  font-weight: bold;
+  text-decoration: none; /* removes underline */
+  margin-top: 10px;     /* space between image and email */
+  text-align: center;   /* ensures it's centered */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+/* Hover effect with blue glow */
+.contact-email:hover {
+  transform: translateY(-4px);    
+}
+
+
+
