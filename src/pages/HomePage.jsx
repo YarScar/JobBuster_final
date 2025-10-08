@@ -1,4 +1,4 @@
-import JobCard from './JobCard';
+import JobCard from '../components/JobCard';
 import useSearch from '../hooks/useSearch';
 
 function Home() {
