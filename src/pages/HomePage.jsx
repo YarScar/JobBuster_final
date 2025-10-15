@@ -1,5 +1,6 @@
 import JobCard from '../components/JobCard';
 import useSearch from '../hooks/useSearch';
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 
 function Home() {
@@ -302,12 +303,56 @@ if (error) {
   );
 }
 
+=======
+
+function Home() {
+  // local state is now managed by the useSearch hook
+
+  // In a real app, this data would come from an API call
+  const jobs = [
+    {
+      id: 1,
+      title: 'Software Engineer',
+      location: 'Remote',
+      company: 'Tech Solutions Inc.',
+      status: 'verified',
+    },
+    {
+      id: 2,
+      title: 'Product Manager',
+      location: 'New York',
+      company: 'Innovate Co.',
+      status: 'warning',
+    },
+    {
+      id: 3,
+      title: 'UX Designer',
+      location: 'San Francisco',
+      company: 'Creative Minds LLC',
+      status: 'verified',
+    },
+
+  ];
+
+  // use the client-side search hook to filter jobs by keyword + location
+  const { keyword: jobKeyword, setKeyword, location, setLocation, results: filteredJobs, reset } = useSearch(jobs, { keys: ['title', 'company', 'location'] });
+
+  const handleSearch = () => {
+    // For now we log the active filters; filtering already happens live via the hook
+    console.log('Searching for:', { jobKeyword, location });
+  };
+
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
   return (
     <div>
       {/* Hero Section */}
       <section className="hero">
         <h1>Find Verified Jobs You Can Trust</h1>
+<<<<<<< HEAD
         <p>AI-powered job listings tailored for you</p>
+=======
+        <p>All Job postings on my site are verified and safe</p>
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
         <div className="search-box">
           <input
             type="text"
@@ -324,15 +369,20 @@ if (error) {
             aria-label="Location"
           />
           <button className="search-btn" onClick={handleSearch}>Search</button>
+<<<<<<< HEAD
           <button className="search-btn" onClick={reset} style={{marginLeft: 8}}>Clear</button>
           <button className="search-btn" onClick={(e) => getNewJobs(e)} style={{marginLeft: 8, background: '#10b981'}}>
             🔄 New Jobs
           </button>
+=======
+          <button className="search-btn" onClick={reset} style={{marginLeft:8}}>Clear</button>
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
         </div>
       </section>
 
       {/* Job Listings */}
       <section className="job-listings">
+<<<<<<< HEAD
         <h2>AI-Generated Job Listings ({filteredJobs.length} jobs found)</h2>
         {filteredJobs.length === 0 ? (
           <div style={{ 
@@ -351,6 +401,11 @@ if (error) {
               Generate New Jobs
             </button>
           </div>
+=======
+        <h2>Job Listings</h2>
+        {filteredJobs.length === 0 ? (
+          <p>No jobs match your search.</p>
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
         ) : (
           filteredJobs.map(job => <JobCard key={job.id} job={job} />)
         )}

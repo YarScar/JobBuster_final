@@ -66,6 +66,26 @@ body {
   justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
+/* Main app container with glass effect */
+.app {
+  width: 75%;
+  height: 53%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background: var(--app-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
 /* Dark Mode Toggle Button */
 .theme-toggle {
   position: fixed;
@@ -91,6 +111,102 @@ body {
   box-shadow: 0 6px 25px var(--glow-blue), 0 0 40px var(--glow-purple);
 }
 
+<<<<<<< HEAD
+=======
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid transparent;
+  background: linear-gradient(90deg, var(--glow-blue), var(--glow-purple)) bottom / 100% 2px no-repeat;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+
+/* Dark mode overrides - applied when document.body has .dark-mode */
+body.dark-mode {
+  color: #e6eef8;
+}
+
+body.dark-mode .app {
+  background: rgba(17, 24, 39, 0.7); /* slightly transparent dark container */
+  box-shadow: 0 8px 32px rgba(2,6,23,0.6);
+  color: #e6eef8;
+}
+
+body.dark-mode .job-card,
+body.dark-mode .info-card {
+  background: rgba(17,24,39,0.45);
+  border-color: rgba(255,255,255,0.06);
+}
+
+body.dark-mode .nav-links a,
+body.dark-mode .logo,
+body.dark-mode .nav-links a {
+  color: #e6eef8;
+}
+  filter: brightness(1.2);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  cursor: pointer;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-2);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+  color: var(--primary-purple);
+  transform: translateY(-2px);
+}
+
+.nav-links a:hover::before {
+  width: 80%;
+}
+
+>>>>>>> 34886a25e0e2b742844b43f1b1e87957e936792e
 .signup-btn {
   background: var(--gradient-2);
   color: white;
