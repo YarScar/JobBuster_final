@@ -8,7 +8,11 @@ function Navbar() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><button className="signup-btn">Sign up</button></li>
+        <li>
+          <Link to="/signup">
+            <button className="signup-btn">Sign up</button>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

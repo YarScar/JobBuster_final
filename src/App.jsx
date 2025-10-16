@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/HomePage';
 import About from './pages/AboutPage';
 import Contact from './pages/ContactPage';
-import SignUp from './components/SignUp';
+import SignUp from './pages/SignUpPage';
 import './index.css'; // use index.css since it contains global styles
 import './styles/NavBar.css'; // import Navbar styles
 import './styles/JobCard.css'; // import JobCard styles
