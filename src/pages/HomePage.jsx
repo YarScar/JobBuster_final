@@ -1,61 +1,89 @@
-import { useState } from 'react';
-import { useJobGeneration } from '../hooks/useJobGeneration';
-import JobCard from '../components/JobCard';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/HomePage';
+import About from './pages/AboutPage';
+import Contact from './pages/ContactPage';
+import SignUp from './components/SignUp';
+import { JobAssistant } from './components/JobAssistant';
+import './index.css'; // use index.css since it contains global styles
+import './styles/Navbar.css'; // import Navbar styles
+import './styles/JobCard.css'; // import JobCard styles
+import './App.css'; // import App specific styles
+import './styles/SearchBar.css'; // import SearchBar styles
 
-function Home() {
-  const [keyword, setKeyword] = useState('');
-  const [location, setLocation] = useState('');
-  const [error, setError] = useState('');
-  const jobGeneration = useJobGeneration();
+function App() {
+  // Check localStorage for saved theme preference
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme === 'dark';
+  });
 
-  const handleSearch = async () => {
-    setError(''); // Clear previous errors
+  // Job Assistant state
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false);
 
-    if (!keyword || !location) {
-      setError('Please enter both a keyword and a location.');
-      return;
+  // Apply dark mode class to body when state changes
+  useEffect(() => {
+    
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
     }
+  }, [darkMode]);
 
-    try {
-      await jobGeneration.mutateAsync({ keyword, location });
-    } catch (error) {
-      setError('Failed to fetch jobs. Please try again.');
-      console.error('Error generating jobs:', error.message);
-    }
+  const toggleDarkMode = () => {
+    setDarkMode(prev => !prev);
+  };
+
+  const toggleAssistant = () => {
+    setIsAssistantOpen(prev => !prev);
   };
 
   return (
-    <div>
-      <section className="search-bar">
-        <input
-          type="text"
-          placeholder="Keyword (e.g., Developer)"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Location (e.g., New York)"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <button onClick={handleSearch} disabled={jobGeneration.isLoading}>
-          {jobGeneration.isLoading ? 'Searching...' : 'Search'}
+    <Router>
+      <div className="app">
+        {/* Dark Mode Toggle Button */}
+        <button
+          className="theme-toggle"
+          onClick={toggleDarkMode}
+          aria-label="Toggle dark mode"
+        >
+          {darkMode ? '☀️' : '🌙'}
         </button>
-      </section>
 
-      {error && <p className="error-message">{error}</p>}
+      
 
-      <section className="job-listings">
-        {jobGeneration.isLoading && <p>Loading jobs...</p>}
-        {jobGeneration.data?.jobs?.length > 0 ? (
-          jobGeneration.data.jobs.map((job) => <JobCard key={job.id} job={job} />)
-        ) : (
-          !jobGeneration.isLoading && <p>No jobs found. Try a different search.</p>
-        )}
-      </section>
-    </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+
+        {/* Global Job Assistant Component */}
+        <JobAssistant 
+          jobContext={null} 
+          isOpen={isAssistantOpen} 
+          onClose={() => setIsAssistantOpen(false)} 
+        />
+      </div>
+
+      {/* Job Assistant Toggle Button */}
+      <button
+        className="assistant-toggle"
+        onClick={toggleAssistant}
+        aria-label="Toggle job assistant"
+      >
+        🤖
+      </button>
+    </Router>
+
+    
   );
 }
 
-export default Home;
+export default App;
