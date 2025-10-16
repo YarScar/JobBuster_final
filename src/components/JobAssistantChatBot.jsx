@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useJobAssistant } from '../hooks/useJobGeneration';
+import { useJobAssistant } from '../hooks/useJobAssistant';
 
 // Conversational UI Component
 export function JobAssistant({ jobContext, isOpen, onClose }) {

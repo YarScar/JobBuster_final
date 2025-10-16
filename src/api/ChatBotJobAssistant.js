@@ -1,4 +1,4 @@
-// Step 7: Conversational UI API endpoint
+//Conversational UI API endpoint
 
 const rateLimit = new Map();
 
