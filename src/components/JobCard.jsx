@@ -1,20 +1,17 @@
-
 function JobCard({ job }) {
   return (
     <div className="job-card">
-      <div className="job-info">
-        <div className="job-icon"></div>
-        <div>
-          <h3>{job.title}</h3>
-          <p>{job.company}</p>
-        </div>
-      </div>
-      <div className="job-actions">
-        <span className={`status ${job.status}`}>
-          {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
-        </span>
-        <button className="apply-btn">Apply</button>
-      </div>
+      <h3>{job.title}</h3>
+      <p><strong>Company:</strong> {job.company}</p>
+      <p><strong>Location:</strong> {job.location}</p>
+      <p><strong>Salary:</strong> {job.salary}</p>
+      <p><strong>Description:</strong> {job.description}</p>
+      <ul>
+        <strong>Requirements:</strong>
+        {job.requirements.map((req, index) => (
+          <li key={index}>{req}</li>
+        ))}
+      </ul>
     </div>
   );
 }
