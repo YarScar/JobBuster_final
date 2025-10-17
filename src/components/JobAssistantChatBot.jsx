@@ -23,43 +23,60 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
     }
   }, [isOpen]);
 
+  //newcode
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const userMessage = inputValue.trim();
+  e.preventDefault();
+  const userMessage = inputValue.trim();
 
-    if (!userMessage) return;
+  if (!userMessage) return;
 
-    const newMessages = [...messages, { role: 'user', content: userMessage }];
-    setMessages(newMessages);
-    setInputValue('');
+  const newMessages = [...messages, { role: 'user', content: userMessage }];
+  setMessages(newMessages);
+  setInputValue('');
 
-    try {
-      const response = await fetch('/api/ChatBotJobAssistant', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages, jobContext }),
-      });
+  try {
+    const response = await fetch('/api/ChatBotJobAssistant', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`, // Pass the API key from environment variables
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini", //Just changed the model of gpt and it worked lmfao
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies.',
+          },
+          ...newMessages,
+        ],
+        temperature: 0.7,
+        max_tokens: 500,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch assistant response.');
-      }
-
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: data.reply },
-      ]);
-    } catch (error) {
-      console.error('Error fetching assistant response:', error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          content: 'I apologize, but I encountered an error. Please try again or ask a different question.',
-        },
-      ]);
+    if (!response.ok) {
+      throw new Error('Failed to fetch assistant response.');
     }
-  };
+
+    const data = await response.json();
+    setMessages((prev) => [
+      ...prev,
+      { role: 'assistant', content: data.choices[0]?.message?.content || 'No response from assistant.' },
+    ]);
+  } catch (error) {
+    console.error('Error fetching assistant response:', error);
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: 'assistant',
+        content: 'I encountered an error. Please try again later.',
+      },
+    ]);
+  }
+};
 
   // Quick prompt buttons
   const quickPrompts = [
