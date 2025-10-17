@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from "react-markdown"
 
 export function JobAssistant({ jobContext, isOpen, onClose }) {
   const [messages, setMessages] = useState([
@@ -48,7 +49,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
           {
             role: 'system',
             content:
-              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies.',
+              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. ',
           },
           ...newMessages,
         ],
@@ -99,7 +100,8 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
       <div className="job-assistant-panel">
         {/* Header */}
         <div className="assistant-header">
-          <h3>🤖 Job Search Assistant</h3>
+          <h3>( ദ്ദി ˙ᗜ˙ )⋆˚✿˖°  Job Search Assistant ⋆˚✿˖° (˶ˆᗜˆ˵) </h3>
+          
           <button
             onClick={onClose}
             className="close-btn"
@@ -120,7 +122,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
                 <strong>
                   {message.role === 'user' ? 'You' : 'Assistant'}:
                 </strong>
-                <p>{message.content}</p>
+                <ReactMarkdown>{message.content}</ReactMarkdown>
               </div>
             </div>
           ))}

@@ -10,6 +10,8 @@ import './styles/NavBar.css'; // import Navbar styles
 import './styles/JobCard.css'; // import JobCard styles
 import './App.css'; // import App specific styles
 import './styles/SearchBar.css'; // import SearchBar styles
+import './styles/ChatBot.css'; // import ChatBot styles
+import './styles/SignUp.css'; // import SignUp styles
 
 function App() {
   // Check localStorage for saved theme preference
