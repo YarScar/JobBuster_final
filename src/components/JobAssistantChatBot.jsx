@@ -37,7 +37,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
   setInputValue('');
 
   try {
-    const response = await fetch('/api/ChatBotJobAssistant', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
