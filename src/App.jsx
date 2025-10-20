@@ -6,7 +6,7 @@ import About from './pages/AboutPage';
 import Contact from './pages/ContactPage';
 import SignUp from './pages/SignUpPage';
 import './index.css'; // use index.css since it contains global styles
-import './styles/navbar.css'; // import Navbar styles
+import './styles/Navbar.css'; // import Navbar styles
 import './styles/JobCard.css'; // import JobCard styles
 import './App.css'; // import App specific styles
 import './styles/SearchBar.css'; // import SearchBar styles
