@@ -29,6 +29,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
   const userMessage = inputValue.trim();
+  console.log(userMessage)
 
   if (!userMessage) return;
 
@@ -37,7 +38,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
   setInputValue('');
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('/api/ChatBotJobAssistant', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

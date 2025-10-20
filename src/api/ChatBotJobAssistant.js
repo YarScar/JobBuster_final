@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. Be professional, encouraging, and provide actionable advice. Keep responses concise and helpful."
+            content: "You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. Be professional, encouraging, and provide actionable advice. Keep responses concise and helpful. Give no more than 20 words."
           },
           ...messages,
           {

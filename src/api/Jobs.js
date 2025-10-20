@@ -17,7 +17,6 @@ export default async function handler(req, res) {
   `;
 
   try {
-    console.log('API Key:', import.meta.env.VITE_OPENAI_API_KEY); // Log the API key
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
