@@ -62,16 +62,17 @@ export function useJobGeneration() {
         }
 
         let jobs = [];
-        try {
+        // try {
           const content = choices[0]?.message?.content;
           console.log("Raw content from API:", content);
           jobs = JSON.parse(content); // Parse the JSON string
-        } catch (parseError) {
-          console.error("Failed to parse jobs:", parseError.message);
-          throw new Error("The API response is not valid JSON. Please try again.");
-        }
+        // } catch (parseError) {
+        //   console.error("Failed to parse jobs:", parseError.message);
+        //   throw new Error("The API response is not valid JSON. Please try again.");
+        // }
 
         return jobs;
+        
       } catch (error) {
         console.error("Error in useJobGeneration:", error.message);
         throw error;

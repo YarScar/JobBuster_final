@@ -6,6 +6,7 @@ import JobSearch from '../components/JobSearch';
 
 function Home() {
 
+   const [jobs, setJobs] = useState([]);
   // State for the job search keyword
   const [keyword, setKeyword] = useState('');
 
@@ -38,7 +39,9 @@ function Home() {
 
     try {
       console.log('Triggering job search with:', { keyword, location });
-      await jobGeneration.mutateAsync({ keyword, location });
+      const fetchedJobs = await jobGeneration.mutateAsync({ keyword, location });
+
+      setJobs(fetchedJobs) 
     } catch (error) {
       setError('Failed to fetch jobs. Please try again.');
       console.error('Error generating jobs:', error); // Log the full error object for debugging
@@ -72,8 +75,8 @@ function Home() {
       {/* Job Listings Section */}
       <section className="job-listings">
         {jobGeneration.isLoading && <p>Loading jobs...</p>}
-        {jobGeneration.data?.jobs?.length > 0 ? (
-          jobGeneration.data.jobs.map((job) => (
+        {jobs.length > 0 ? (
+          jobs.map((job) => (
             <JobCard key={job.id} job={job} />
           ))
         ) : (
