@@ -1,78 +1,84 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 
 export function useJobGeneration() {
   return useMutation({
     mutationFn: async ({ keyword, location }) => {
       try {
-        // Validate inputs
         if (!keyword || !location) {
-          throw new Error('Keyword and location are required.');
+          throw new Error("Keyword and location are required.");
         }
 
         const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
         if (!apiKey) {
-          throw new Error('Missing OpenAI API key');
+          throw new Error("Missing OpenAI API key");
         }
 
-        // Prepare the request body for the OpenAI API
         const requestBody = {
-          model: 'gpt-4.1-nano', // Replace 'gpt-3.5-turbo' with 'gpt-4' if available
+          model: "gpt-4.1-nano", // Use the correct model
           messages: [
             {
-              role: 'system',
-              content:  `You are a helpful assistant that generates job opportunities. 
-                Always respond with a valid JSON array. 
-                Each job should include the following fields:
-                - id (number)
-                - title (string)
-                - company (string)
-                - location (string)
-                - salary (string)
-                - description (string, max 200 characters)
-                - requirements (array of strings).`,
+              role: "system",
+              content: `You are a helpful assistant that generates job opportunities. 
+                        Always respond with a valid JSON array. 
+                        Each job should include the following fields:
+                        - id (number)
+                        - title (string)
+                        - company (string)
+                        - location (string)
+                        - salary (string)
+                        - description (string, max 200 characters)
+                        - requirements (array of strings).`,
             },
             {
-              role: 'user',
+              role: "user",
               content: `Find jobs related to "${keyword}" in "${location}".`,
             },
           ],
         };
 
-        // Make the API request
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
+        console.log("Sending API request with body:", requestBody);
+
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify(requestBody),
         });
 
-        // Handle non-OK responses
         if (!response.ok) {
           const errorData = await response.json();
-          console.error('Response Error:', errorData);
-          throw new Error(errorData.error?.message || 'Failed to fetch job opportunities.');
+          console.error("API Response Error:", errorData);
+          throw new Error(errorData.error?.message || "Failed to fetch job opportunities.");
         }
 
-         // Parse the response data
         const data = await response.json();
+        console.log("API response received:", data);
+
+        const choices = data.choices;
+        if (!choices || choices.length === 0) {
+          throw new Error("No choices returned from the API.");
+        }
+
         let jobs = [];
         try {
-          jobs = JSON.parse(data.choices[0]?.message?.content || '[]'); // Parse the jobs array
+          const content = choices[0]?.message?.content;
+          console.log("Raw content from API:", content);
+          jobs = JSON.parse(content); // Parse the JSON string
         } catch (parseError) {
-          console.error('Failed to parse jobs:', parseError.message);
-          throw new Error('The API response is not valid JSON. Please try again.');
+          console.error("Failed to parse jobs:", parseError.message);
+          throw new Error("The API response is not valid JSON. Please try again.");
         }
 
         return jobs;
       } catch (error) {
-        console.error('Error in useJobGeneration:', error.message);
-        throw error; // Propagate the error to be handled by react-query
+        console.error("Error in useJobGeneration:", error.message);
+        throw error;
       }
     },
     onError: (error) => {
-      console.error('Job Generation error:', error.message);
+      console.error("Job Generation error:", error.message);
     },
   });
 }

@@ -1,42 +1,52 @@
-import React, { useState } from 'react';
-import { useJobGeneration } from '../hooks/useJobGeneration';
-import useSearch from '../hooks/useSearch';
-import JobCard from './JobCard';
+import { useState } from "react";
+import { useJobGeneration } from "../hooks/useJobGeneration";
+import JobCard from "./JobCard";
+import "../styles/SearchBar.css";
 
 export default function JobSearch() {
-  const [jobs, setJobs] = useState([]); // Store fetched jobs
-  const { keyword, setKeyword, location, setLocation, results, reset } = useSearch(jobs, {
-    keys: ['title', 'company', 'location'],
-  });
-
+  const [keyword, setKeyword] = useState("");
+  const [location, setLocation] = useState("");
+  const [jobs, setJobs] = useState([]);  // State to store the fetched jobs
+  console.log("Jobs array before rendering:", jobs);
+  // Use the useJobGeneration hook
   const { mutate, isLoading, error } = useJobGeneration();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    
-    console.log('Keyword:', keyword);
-    console.log('Location:', location);
 
+    if (!keyword || !location) {
+      console.warn("Keyword or location is missing.");
+      return;
+    }
+
+    console.log("Triggering API call with:", { keyword, location });
+
+    // Trigger the API call using the mutate function
     mutate(
       { keyword, location },
       {
         onSuccess: (data) => {
+          console.log("API call successful. Data received:", data);
+          setJobs(data); // Update the jobs state with the fetched data
+        },
+        onSuccess: (data) => {
+
+          console.log("Jobs state updated with:", data); //logging if the jobs are being updated
           setJobs(data); // Update the jobs state with the fetched data
         },
         onError: (err) => {
-          console.error('Error fetching jobs:', err.message);
+          console.error("Error fetching jobs:", err.message);
         },
-      
       }
     );
   };
 
   return (
     <div className="job-search-container">
-      <form onSubmit={handleSearch} className="job-search-form">
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
-          placeholder="Enter job keyword"
+          placeholder="Enter job title"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
@@ -47,25 +57,19 @@ export default function JobSearch() {
           onChange={(e) => setLocation(e.target.value)}
         />
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Searching...' : 'Search'}
-        </button>
-        <button type="button" onClick={reset}>
-          Reset
+          {isLoading ? "Searching..." : "Search"}
         </button>
       </form>
 
-      {error && <p className="error-message">Failed to fetch jobs. Please try again.</p>}
+      {isLoading && <p>Loading jobs...</p>}
+      {error && <p className="error-message">Error: {error.message}</p>}
 
       <div className="job-results">
-        {isLoading && <p>Loading jobs...</p>}
-        {results.length > 0 ? (
-          results.map((job, index) => (
+        {jobs.length > 0 ? (
+          jobs.map((job) => (
             <JobCard
-              key={index}
-              title={job.title}
-              company={job.company}
-              location={job.location}
-              description={job.description}
+              key={job.id}
+              job={job} // Pass the entire job object to the JobCard component
             />
           ))
         ) : (

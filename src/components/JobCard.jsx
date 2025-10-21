@@ -1,18 +1,25 @@
-import React from 'react';
-import '../styles/JobCard.css';
+import "../styles/JobCard.css";
 
-function JobCard({ title, company, location, description }) {
+export default function JobCard({ job }) {
+  console.log("Rendering JobCard with job:", job);
+  const { title, company, location, salary, description, requirements } = job;
+
   return (
     <div className="job-card">
       <h3>{title}</h3>
       <p><strong>Company:</strong> {company}</p>
       <p><strong>Location:</strong> {location}</p>
-      <p>{description}</p>
+      <p><strong>Salary:</strong> {salary}</p>
+      <p><strong>Description:</strong> {description}</p>
+      <p><strong>Requirements:</strong></p>
+      <ul>
+        {requirements.map((req, index) => (
+          <li key={index}>{req}</li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export default JobCard;
 
 // function JobCard({ job }) {
 //   return (

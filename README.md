@@ -56,3 +56,28 @@ It features a **Home page** with a job listings section, an **About page** with 
 ---
 
 ## 📂 Project Structure
+JobBuster2/
+├── .github/
+│   ├── copilot-instructions.md   # Instructions for coding conventions and guidelines.
+├── src/
+│   ├── api/
+│   │   ├── Jobs.js               # API route for fetching job opportunities.
+│   ├── components/
+│   │   ├── JobAssistantChatBot.jsx  # Component for the chatbot functionality.
+│   │   ├── JobCard.jsx           # Component for displaying individual job details.
+│   │   ├── JobSearch.jsx         # Component for the job search form and results.
+│   ├── hooks/
+│   │   ├── useJobGeneration.js   # Custom hook for calling the OpenAI API to generate jobs.
+│   │   ├── useSearch.js          # Custom hook for filtering job results based on user input.
+│   ├── styles/
+│   │   ├── JobCard.css           # Styles for the JobCard component.
+│   │   ├── SearchBar.css         # Styles for the search bar.
+│   ├── pages/
+│   │   ├── HomePage.jsx          # Main page of the application.
+│   │   ├── SignUpPage.jsx        # Page for user sign-up functionality.
+├── public/
+│   ├── index.html                # HTML template for the application.
+├── vite.config.js                # Vite configuration file for development and proxy setup.
+├── package.json                  # Project dependencies and scripts.
+├── README.md                     # Project documentation.
+├── .env                          # Environment variables (e.g., OpenAI API key).
