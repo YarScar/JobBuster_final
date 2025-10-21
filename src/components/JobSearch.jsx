@@ -6,15 +6,19 @@ import "../styles/SearchBar.css";
 export default function JobSearch() {
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
-  const [jobs, setJobs] = useState([]);  // State to store the fetched jobs
+  const [jobs, setJobs] = useState([]); // State to store the fetched jobs
+  const [error, setError] = useState(""); // State to store error messages
+
   console.log("Jobs array before rendering:", jobs);
+
   // Use the useJobGeneration hook
-  const { mutate, isLoading, error } = useJobGeneration();
+  const { mutate, isLoading } = useJobGeneration();
 
   const handleSearch = (e) => {
     e.preventDefault();
 
     if (!keyword || !location) {
+      setError("Please enter both a job title and a location.");
       console.warn("Keyword or location is missing.");
       return;
     }
@@ -26,16 +30,21 @@ export default function JobSearch() {
       { keyword, location },
       {
         onSuccess: (data) => {
-          console.log("API call successful. Data received:", data);
-          setJobs(data); // Update the jobs state with the fetched data
-        },
-        onSuccess: (data) => {
-
-          console.log("Jobs state updated with:", data); //logging if the jobs are being updated
-          setJobs(data); // Update the jobs state with the fetched data
+          try {
+            const content = data.choices[0]?.message?.content;
+            console.log("Raw content from API:", content); // Log the raw content for debugging
+            const parsedJobs = JSON.parse(content); // Parse the JSON string into an array
+            console.log("Parsed jobs:", parsedJobs); // Log the parsed jobs array
+            setJobs(parsedJobs); // Update the jobs state with the parsed data
+            setError(""); // Clear any previous errors
+          } catch (error) {
+            console.error("Failed to parse API response:", error);
+            setError("Failed to process job data. Please try again.");
+          }
         },
         onError: (err) => {
           console.error("Error fetching jobs:", err.message);
+          setError("Failed to fetch jobs. Please try again.");
         },
       }
     );
@@ -61,10 +70,10 @@ export default function JobSearch() {
         </button>
       </form>
 
-      {isLoading && <p>Loading jobs...</p>}
-      {error && <p className="error-message">Error: {error.message}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       <div className="job-results">
+        {isLoading && <p>Loading jobs...</p>}
         {jobs.length > 0 ? (
           jobs.map((job) => (
             <JobCard

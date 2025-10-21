@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useJobGeneration } from '../hooks/useJobGeneration';
 import { JobAssistant } from '../components/JobAssistantChatBot';
 import JobCard from '../components/JobCard';
+import JobSearch from '../components/JobSearch';
 
 function Home() {
+
   // State for the job search keyword
   const [keyword, setKeyword] = useState('');
 
@@ -27,6 +29,7 @@ function Home() {
   // Function to handle the job search
   const handleSearch = async () => {
     setError(''); // Clear previous errors
+
 
     if (!keyword || !location) {
       setError('Please enter both a keyword and a location.');
@@ -68,16 +71,14 @@ function Home() {
 
       {/* Job Listings Section */}
       <section className="job-listings">
-        <div className="job-results">
-          {jobGeneration.isLoading && <p>Loading jobs...</p>}
-          {jobGeneration.data?.jobs?.length > 0 ? (
-            jobGeneration.data.jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))
-          ) : (
-            !jobGeneration.isLoading && <p>No jobs found. Try a different search.</p>
-          )}
-        </div>
+        {jobGeneration.isLoading && <p>Loading jobs...</p>}
+        {jobGeneration.data?.jobs?.length > 0 ? (
+          jobGeneration.data.jobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))
+        ) : (
+          !jobGeneration.isLoading && <p>No jobs found. Try a different search.</p>
+        )}
       </section>
 
       {/* Job Assistant Section */}
