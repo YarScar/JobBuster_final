@@ -7,19 +7,19 @@
   --dark-blue: #9c1eaf;
   --dark-purple: #6d28d9;
   --gradient-1: linear-gradient(135deg, #ea66e3 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #f098ea 0%, #7c3aed 100%);
-  --gradient-3: linear-gradient(135deg, #fa60eb 0%, #a78bfa 100%);
+  --gradient-2: linear-gradient(135deg, #d650ce 0%, #7c3aed 100%);
+  --gradient-3: linear-gradient(135deg, #e52cd3 0%, #a78bfa 100%);
   --glow-blue: rgba(192, 37, 235, 0.6);
   --glow-purple: rgba(124, 58, 237, 0.6);
   
   /* Light mode colors */
-  --bg-gradient: linear-gradient(-45deg, #edaafa, #805ca3, #e288fa, #a878f9);
-  --app-bg: rgba(255, 255, 255, 0.95);
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --card-bg: white;
-  --border-color: #e5e7eb;
-  --input-bg: white;
+  --bg-gradient: linear-gradient(-45deg, #df8cf0, #805ca3, #d85efa, #a878f9);
+  --app-bg: rgba(225, 150, 240, 0.95);
+  --text-primary: #8f16c7;
+  --text-secondary: #523557;
+  --card-bg: rgb(89, 16, 93);
+  --border-color: #e82eb6;
+  --input-bg: rgb(35, 1, 25);
 }
 
 /* Dark mode colors */
