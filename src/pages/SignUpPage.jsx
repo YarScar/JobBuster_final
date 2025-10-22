@@ -10,34 +10,35 @@ function SignUp() {
   });
   const [error, setError] = useState('');
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
-  e.preventDefault();
-  setError('');
+    e.preventDefault();
+    setError('');
 
-  if (!formData.name || !formData.email || !formData.password) {
-    setError('All fields are required.');
-    return;
-  }
+    if (!formData.name || !formData.email || !formData.password) {
+      setError('All fields are required.');
+      return;
+    }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(formData.email)) {
-    setError('Please enter a valid email address.');
-    return;
-  }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
 
-  if (formData.password.length < 8) {
-    setError('Password must be at least 8 characters long.');
-    return;
-  }
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long.');
+      return;
+    }
 
-  console.log('User signed up:', formData);
-  navigate('/');
-};
+    navigate('/');
+  };
 
   return (
     <div className="sign-up-container">

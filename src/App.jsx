@@ -48,10 +48,12 @@ function App() {
         </button>
 
         <Navbar />
+
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<div className="page-wrapper"><Contact /></div>} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>

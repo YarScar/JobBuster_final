@@ -9,9 +9,7 @@ function Navbar() {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li>
-          <Link to="/signup">
-            <button className="signup-btn">Sign up</button>
-          </Link>
+          <Link to="/signup" className="signup-btn">Sign up</Link>
         </li>
       </ul>
     </nav>

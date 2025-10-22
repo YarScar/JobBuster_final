@@ -82,7 +82,7 @@ export default function JobSearch() {
             />
           ))
         ) : (
-          !isLoading && <p>No jobs found. Try a different search.</p>
+          !isLoading && <p>Search a job!</p>
         )}
       </div>
     </div>

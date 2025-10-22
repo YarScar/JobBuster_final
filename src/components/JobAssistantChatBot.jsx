@@ -29,7 +29,6 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
   const handleSubmit = async (e) => {
   e.preventDefault();
   const userMessage = inputValue.trim();
-  console.log(userMessage)
 
   if (!userMessage) return;
 
@@ -42,15 +41,15 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`, // Pass the API key from environment variables
+        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini", //Just changed the model of gpt and it worked lmfao
+        model: "gpt-4o-mini",
         messages: [
           {
             role: 'system',
             content:
-              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. ',
+              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies.',
           },
           ...newMessages,
         ],

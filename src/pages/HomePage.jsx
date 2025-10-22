@@ -2,49 +2,55 @@ import { useState } from 'react';
 import { useJobGeneration } from '../hooks/useJobGeneration';
 import { JobAssistant } from '../components/JobAssistantChatBot';
 import JobCard from '../components/JobCard';
-import JobSearch from '../components/JobSearch';
+import '../styles/HomePage.css';
 
 function Home() {
-
-   const [jobs, setJobs] = useState([]);
-  // State for the job search keyword
+  const [jobs, setJobs] = useState([]);
   const [keyword, setKeyword] = useState('');
-
-  // State for the job search location
   const [location, setLocation] = useState('');
-
-  // State for displaying error messages
   const [error, setError] = useState('');
-
-  // State for toggling the Job Assistant
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Local loading state
 
-  // Hook for job generation
   const jobGeneration = useJobGeneration();
 
-  // Function to toggle the Job Assistant
+  // Toggle the Job Assistant
   const toggleAssistant = () => {
     setIsAssistantOpen((prev) => !prev);
   };
 
-  // Function to handle the job search
+  // Handle the job search
   const handleSearch = async () => {
-    setError(''); // Clear previous errors
-
+    setError('');
+    setIsLoading(true); // Set loading to true when search starts
 
     if (!keyword || !location) {
       setError('Please enter both a keyword and a location.');
+      setIsLoading(false); // Reset loading if validation fails
       return;
     }
 
     try {
       console.log('Triggering job search with:', { keyword, location });
       const fetchedJobs = await jobGeneration.mutateAsync({ keyword, location });
-
-      setJobs(fetchedJobs) 
+      setJobs(fetchedJobs);
     } catch (error) {
       setError('Failed to fetch jobs. Please try again.');
-      console.error('Error generating jobs:', error); // Log the full error object for debugging
+      console.error('Error generating jobs:', error);
+    } finally {
+      setIsLoading(false); // Reset loading when search completes
+    }
+  };
+
+  // Clear the search inputs and results
+  const clearSearch = () => {
+    try {
+      setKeyword('');
+      setLocation('');
+      setJobs([]);
+      setError('');
+    } catch (error) {
+      console.error('Error clearing search:', error);
     }
   };
 
@@ -64,8 +70,11 @@ function Home() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
-        <button onClick={handleSearch} disabled={jobGeneration.isLoading}>
-          {jobGeneration.isLoading ? 'Searching...' : 'Search'}
+        <button onClick={handleSearch} disabled={isLoading} className="search-btn">
+          {isLoading ? 'Searching...' : 'Search'}
+        </button>
+        <button onClick={clearSearch} className="clear-btn">
+          Clear
         </button>
       </section>
 
@@ -74,13 +83,15 @@ function Home() {
 
       {/* Job Listings Section */}
       <section className="job-listings">
-        {jobGeneration.isLoading && <p>Loading jobs...</p>}
-        {jobs.length > 0 ? (
-          jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))
+        {isLoading ? (
+          <div className="loading-animation">
+            <div className="spinner"></div>
+            <p>Loading jobs...</p>
+          </div>
+        ) : jobs.length > 0 ? (
+          jobs.map((job) => <JobCard key={job.id} job={job} />)
         ) : (
-          !jobGeneration.isLoading && <p>No jobs found. Try a different search.</p>
+          <p>Search a job!</p>
         )}
       </section>
 

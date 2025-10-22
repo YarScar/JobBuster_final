@@ -36,8 +36,6 @@ export function useJobGeneration() {
           ],
         };
 
-        console.log("Sending API request with body:", requestBody);
-
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
           headers: {
@@ -49,27 +47,18 @@ export function useJobGeneration() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error("API Response Error:", errorData);
           throw new Error(errorData.error?.message || "Failed to fetch job opportunities.");
         }
 
         const data = await response.json();
-        console.log("API response received:", data);
-
         const choices = data.choices;
         if (!choices || choices.length === 0) {
           throw new Error("No choices returned from the API.");
         }
 
         let jobs = [];
-        // try {
-          const content = choices[0]?.message?.content;
-          console.log("Raw content from API:", content);
-          jobs = JSON.parse(content); // Parse the JSON string
-        // } catch (parseError) {
-        //   console.error("Failed to parse jobs:", parseError.message);
-        //   throw new Error("The API response is not valid JSON. Please try again.");
-        // }
+        const content = choices[0]?.message?.content;
+        jobs = JSON.parse(content); // Parse the JSON string
 
         return jobs;
         
