@@ -1,18 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useJobGeneration } from '../hooks/useJobGeneration';
 import { JobAssistant } from '../components/JobAssistantChatBot';
 import JobCard from '../components/JobCard';
 import '../styles/HomePage.css';
 
 function Home() {
-  const [jobs, setJobs] = useState([]);
-  const [keyword, setKeyword] = useState('');
-  const [location, setLocation] = useState('');
+  const [jobs, setJobs] = useState(() => {
+    const savedJobs = localStorage.getItem('jobs');
+    return savedJobs ? JSON.parse(savedJobs) : [];
+  });
+  const [keyword, setKeyword] = useState(() => localStorage.getItem('keyword') || '');
+  const [location, setLocation] = useState(() => localStorage.getItem('location') || '');
   const [error, setError] = useState('');
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Local loading state
 
   const jobGeneration = useJobGeneration();
+
+  // Save search results and inputs to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+    localStorage.setItem('keyword', keyword);
+    localStorage.setItem('location', location);
+  }, [jobs, keyword, location]);
 
   // Toggle the Job Assistant
   const toggleAssistant = () => {
@@ -49,6 +59,9 @@ function Home() {
       setLocation('');
       setJobs([]);
       setError('');
+      localStorage.removeItem('jobs');
+      localStorage.removeItem('keyword');
+      localStorage.removeItem('location');
     } catch (error) {
       console.error('Error clearing search:', error);
     }

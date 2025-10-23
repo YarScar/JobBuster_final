@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/SignUp.css';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -42,7 +43,10 @@ function SignUp() {
 
   return (
     <div className="sign-up-container">
-      <h2>Sign Up</h2>
+      <section className="hero">
+        <h1>Create Your Account</h1>
+        <p>Join JobBuster to unlock your career potential.</p>
+      </section>
       <form onSubmit={handleSubmit} className="sign-up-form">
         <div className="form-group">
           <label htmlFor="name">Name</label>

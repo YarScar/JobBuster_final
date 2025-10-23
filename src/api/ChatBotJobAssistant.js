@@ -69,7 +69,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. Be professional, encouraging, and provide actionable advice. Keep responses concise and helpful. Give no more than 20 words."
+            content: "You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies. Respond concisely in 5 clear steps, ensuring each step is complete and actionable. Avoid unnecessary words while maintaining clarity.",
           },
           ...messages,
           {
@@ -78,7 +78,7 @@ export default async function handler(req, res) {
           }
         ],
         temperature: 0.7,
-        max_tokens: 500,
+        max_tokens: 750, // Increased max_tokens to ensure complete responses
       })
     });
 

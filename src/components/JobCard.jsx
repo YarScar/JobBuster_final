@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useFavorites } from "../context/FavoritesContext";
 import "../styles/JobCard.css";
 
 // Mapping of job categories to relevant icons
@@ -17,9 +19,9 @@ const jobIcons = {
 };
 
 export default function JobCard({ job }) {
-  const { title, company, location, isVerified } = job;
+  const navigate = useNavigate();
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
 
-  // Determine the icon based on the job title or category
   const getJobIcon = (title) => {
     const lowerTitle = title.toLowerCase();
     for (const [key, icon] of Object.entries(jobIcons)) {
@@ -30,22 +32,45 @@ export default function JobCard({ job }) {
     return jobIcons.default; // Default icon if no match is found
   };
 
-  const jobIcon = getJobIcon(title);
+  const jobIcon = getJobIcon(job.title);
+
+  const isFavorite = favorites.some((fav) => fav.id === job.id);
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavorite(job.id);
+    } else {
+      addFavorite(job);
+    }
+  };
+
+  const handleClick = () => {
+    navigate(`/job/${job.id}`, { state: { job } });
+  };
 
   return (
-    <div className="job-card" onClick={() => console.log(`Clicked on ${title}`)}>
-      <div className="job-info">
+    <div className="job-card">
+      <div className="job-info" onClick={handleClick}>
         <div className="job-icon">
           <span className="job-icon-placeholder">{jobIcon}</span>
         </div>
         <div>
-          <h3>{title}</h3>
-          <p>{company} - {location}</p>
+          <h3>{job.title}</h3>
+          <p>{job.company} - {job.location}</p>
         </div>
       </div>
       <div className="job-actions">
-        {isVerified && <span className="status verified">Verified</span>}
-        <button className="apply-btn">Apply Now</button>
+        <button className="apply-btn" onClick={handleClick}>
+          Apply
+        </button>
+        <button
+          className={`favorite-btn ${isFavorite ? "filled" : ""}`}
+          onClick={toggleFavorite}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+        >
+          {isFavorite ? "💜" : "🤍"}
+        </button>
+        {job.isVerified && <span className="status verified">Verified</span>}
       </div>
     </div>
   );

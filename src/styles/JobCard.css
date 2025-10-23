@@ -13,16 +13,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border: 2px solid var(--border-color);
-  border-radius: 16px;
-  margin-bottom: 18px;
+  padding: 15px;
   background: var(--card-bg);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .job-card::before {
@@ -43,15 +41,15 @@
 }
 
 .job-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 40px var(--glow-blue), 0 0 60px var(--glow-purple);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
   border-color: var(--primary-purple);
 }
 
 .job-info {
   display: flex;
-  gap: 18px;
   align-items: center;
+  gap: 15px;
   position: relative;
   z-index: 1;
 }
@@ -80,8 +78,7 @@
 }
 
 .job-icon-placeholder {
-  font-size: 28px; /* Adjust size for better visibility */
-  color: white;
+  font-size: 24px;
 }
 
 .job-card:hover .job-icon {
@@ -91,8 +88,8 @@
 
 .job-actions {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 10px;
   position: relative;
   z-index: 1;
 }
@@ -120,17 +117,35 @@
   background: var(--gradient-2);
   color: white;
   border: none;
-  padding: 10px 24px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
+  font-size: 14px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px var(--glow-blue);
+  box-shadow: 0 4px 15px var(--glow-blue);
 }
 
 .apply-btn:hover {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 20px var(--glow-purple), 0 0 30px var(--glow-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-secondary); /* Default color for unfilled heart */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.favorite-btn.filled {
+  color: var(--primary-purple); /* Purple color for filled heart */
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+  color: var(--primary-purple); /* Ensure hover color matches filled state */
 }
 
 /* About Section styling */

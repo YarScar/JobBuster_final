@@ -1,0 +1,70 @@
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevent interaction with stars */
+  z-index: -1; /* Place stars behind other content */
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--primary-purple); /* Purple color for stars */
+  border-radius: 50%; /* Make stars round */
+  opacity: 0.5; /* Make stars slightly transparent */
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4), 0 0 20px rgba(124, 58, 237, 0.3); /* Softer glow */
+  animation: twinkle 7s infinite ease-in-out, float 15s infinite ease-in-out; /* Slower animations */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.star:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.8), 0 0 30px rgba(124, 58, 237, 0.6); /* Brighter glow on hover */
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4; /* Reduced opacity for a subtle twinkle */
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -10px);
+  }
+  50% {
+    transform: translate(-20px, 10px);
+  }
+  75% {
+    transform: translate(10px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Randomly position stars */
+.stars-container .star:nth-child(1) { top: 10%; left: 15%; }
+.stars-container .star:nth-child(2) { top: 20%; left: 50%; }
+.stars-container .star:nth-child(3) { top: 30%; left: 80%; }
+.stars-container .star:nth-child(4) { top: 40%; left: 25%; }
+.stars-container .star:nth-child(5) { top: 50%; left: 70%; }
+/* Add more stars with random positions */
+.stars-container .star:nth-child(6) { top: 60%; left: 10%; }
+.stars-container .star:nth-child(7) { top: 70%; left: 40%; }
+.stars-container .star:nth-child(8) { top: 80%; left: 90%; }
+.stars-container .star:nth-child(9) { top: 85%; left: 30%; }
+.stars-container .star:nth-child(10) { top: 90%; left: 60%; }
+/* Repeat for all 50 stars */

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown";
 
 export function JobAssistant({ jobContext, isOpen, onClose }) {
   const [messages, setMessages] = useState([
@@ -9,6 +9,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
     },
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state for the spinner
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -24,62 +25,70 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  //newcode
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const userMessage = inputValue.trim();
+    e.preventDefault();
+    const userMessage = inputValue.trim();
 
-  if (!userMessage) return;
+    if (!userMessage) return;
 
-  const newMessages = [...messages, { role: 'user', content: userMessage }];
-  setMessages(newMessages);
-  setInputValue('');
+    const newMessages = [...messages, { role: 'user', content: userMessage }];
+    setMessages(newMessages);
+    setInputValue('');
+    setIsLoading(true); // Set loading to true when the request starts
 
-  try {
-    const response = await fetch('/api/ChatBotJobAssistant', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies.',
-          },
-          ...newMessages,
-        ],
-        temperature: 0.7,
-        max_tokens: 500,
-      }),
-    });
+    try {
+      const response = await fetch('/api/ChatBotJobAssistant', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You are a helpful job search assistant. Help users with job applications, career advice, resume tips, and job search strategies.',
+            },
+            ...newMessages,
+          ],
+          temperature: 0.7,
+          max_tokens: 1000, // Increased max_tokens for longer responses
+        }),
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch assistant response.');
+      if (!response.ok) {
+        throw new Error('Failed to fetch assistant response.');
+      }
+
+      const data = await response.json();
+      const assistantMessage = data.choices[0]?.message?.content || 'No response from assistant.';
+
+      // Check if the response might be truncated
+      const isTruncated = assistantMessage.endsWith('...');
+      const finalMessage = isTruncated
+        ? `${assistantMessage} (Response might be incomplete. Please ask for more details if needed.)`
+        : assistantMessage;
+
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: finalMessage },
+      ]);
+    } catch (error) {
+      console.error('Error fetching assistant response:', error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'I encountered an error. Please try again later.',
+        },
+      ]);
+    } finally {
+      setIsLoading(false); // Reset loading when the request completes
     }
+  };
 
-    const data = await response.json();
-    setMessages((prev) => [
-      ...prev,
-      { role: 'assistant', content: data.choices[0]?.message?.content || 'No response from assistant.' },
-    ]);
-  } catch (error) {
-    console.error('Error fetching assistant response:', error);
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: 'assistant',
-        content: 'I encountered an error. Please try again later.',
-      },
-    ]);
-  }
-};
-
-  // Quick prompt buttons
   const quickPrompts = [
     'How do I write a good resume?',
     'Tips for job interviews',
@@ -116,7 +125,7 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
           {messages.map((message, index) => (
             <div key={index} className={`message message--${message.role}`}>
               <div className="message-avatar">
-                {message.role === 'user' ? '👤' : '🤖'}
+                {message.role === 'user' ? '👤' : '🌷'}
               </div>
               <div className="message-content">
                 <strong>
@@ -126,6 +135,15 @@ export function JobAssistant({ jobContext, isOpen, onClose }) {
               </div>
             </div>
           ))}
+
+          {/* Loading Indicator */}
+          {isLoading && (
+            <div className="typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          )}
 
           <div ref={messagesEndRef} />
         </div>
