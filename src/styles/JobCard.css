@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  cursor: pointer;
   position: relative;
   z-index: 1;
 }
@@ -89,7 +90,8 @@
 .job-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* Add spacing between buttons */
+  justify-content: flex-end; /* Align buttons to the right */
   position: relative;
   z-index: 1;
 }

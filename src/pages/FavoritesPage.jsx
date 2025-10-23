@@ -13,7 +13,7 @@ function FavoritesPage() {
         <div className="favorites-list">
           {favorites.map((job) => (
             <div key={job.id} className="favorite-job">
-              <JobCard job={job} />
+              <JobCard job={job} hideApplyButton={true} /> {/* Hide Apply button */}
               <button
                 className="remove-btn"
                 onClick={() => removeFavorite(job.id)}

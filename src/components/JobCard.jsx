@@ -18,7 +18,7 @@ const jobIcons = {
   default: "🏢", // Default icon for unspecified jobs
 };
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, hideApplyButton = false }) {
   const navigate = useNavigate();
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
@@ -34,6 +34,7 @@ export default function JobCard({ job }) {
 
   const jobIcon = getJobIcon(job.title);
 
+  // Check if the job is in the favorites list
   const isFavorite = favorites.some((fav) => fav.id === job.id);
 
   const toggleFavorite = () => {
@@ -60,9 +61,11 @@ export default function JobCard({ job }) {
         </div>
       </div>
       <div className="job-actions">
-        <button className="apply-btn" onClick={handleClick}>
-          Apply
-        </button>
+        {!hideApplyButton && (
+          <button className="apply-btn" onClick={handleClick}>
+            Apply
+          </button>
+        )}
         <button
           className={`favorite-btn ${isFavorite ? "filled" : ""}`}
           onClick={toggleFavorite}
