@@ -42,7 +42,7 @@
   background: var(--card-bg);
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  width: 95%; /* Increased width */
+  width: 95%; /* Adjust width for smaller screens */
   max-width: 700px; /* Increased max width */
   height: 85vh; /* Increased height */
   max-height: 85vh; /* Ensure it doesn't exceed viewport height */
@@ -260,4 +260,23 @@
   border-radius: 8px;
   color: #ff6b6b;
   font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .job-assistant-panel {
+    width: 100%; /* Full width on smaller screens */
+    height: 90vh; /* Adjust height */
+  }
+
+  .assistant-messages {
+    max-height: 50vh; /* Reduce message area height */
+  }
+
+  .input-group input {
+    font-size: 14px; /* Adjust input font size */
+  }
+
+  .send-btn {
+    font-size: 14px; /* Adjust button font size */
+  }
 }
