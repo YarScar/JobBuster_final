@@ -47,8 +47,8 @@
 }
 
 .form-group input {
-  width: 100%; /* Make inputs full-width */
-  padding: 10px; /* Reduced padding */
+  width: 80%; /* Smaller width */
+  padding: 8px; /* Reduced padding */
   border: 2px solid var(--border-color);
   border-radius: 20px; /* Rounded corners */
   background: var(--input-bg);
@@ -106,18 +106,4 @@
 .sign-up-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
-}
-
-@media (max-width: 768px) {
-  .sign-up-container {
-    padding: 15px; /* Reduce padding for smaller screens */
-  }
-
-  .form-group input {
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-
-  .sign-up-button {
-    font-size: 14px; /* Adjust button font size */
-  }
 }
