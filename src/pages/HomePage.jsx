@@ -73,7 +73,7 @@ function Home() {
       <section className="search-bar">
         <input
           type="text"
-          placeholder="Keyword (e.g., Developer)"
+          placeholder="Search a job (e.g., Developer)"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
         />
