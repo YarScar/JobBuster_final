@@ -6,7 +6,8 @@
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
-  background: var(--app-bg);
+  /* background: var(rgb(114, 58, 128)); */
+  background-color: rgb(98, 48, 144);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
