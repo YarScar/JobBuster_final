@@ -5,6 +5,8 @@ import Home from './pages/HomePage';
 import About from './pages/AboutPage';
 import Contact from './pages/ContactPage';
 import SignUp from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
+import ProfilePage from './pages/ProfilePage';
 import Stars from './components/Stars';
 import './index.css';
 import './styles/Navbar.css';
@@ -19,7 +21,10 @@ import { FavoritesProvider } from './context/FavoritesContext';
 import WelcomePage from './pages/WelcomePage'; // Import the WelcomePage
 
 function App() {
-  const [user, setUser] = useState(null); // State to manage the logged-in user
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
@@ -42,6 +47,10 @@ function App() {
 
   const handleSignUp = (userData) => {
     setUser(userData); // Set the user data after signing up
+  };
+
+  const handleSignIn = (userData) => {
+    setUser(userData); // Set the user data after signing in
   };
 
   const handleLogout = () => {
@@ -74,6 +83,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
+            <Route path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
+            <Route path="/profile" element={<ProfilePage user={user} onLogout={handleLogout} />} />
             <Route path="/job/:id" element={<JobDetailsPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>

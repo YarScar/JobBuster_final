@@ -2,13 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
-function SignUpPage({ onSignUp }) {
+function SignInPage({ onSignIn }) {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -20,47 +16,29 @@ function SignUpPage({ onSignUp }) {
     e.preventDefault();
     setError('');
 
-    if (!formData.name || !formData.email || !formData.password) {
-      setError('All fields are required.');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (!storedUser || storedUser.email !== formData.email) {
+      setError('Invalid email or user does not exist.');
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setError('Please enter a valid email address.');
+    // Simulate password validation (for demo purposes)
+    if (formData.password !== 'password123') {
+      setError('Incorrect password.');
       return;
     }
 
-    if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters long.');
-      return;
-    }
-
-    // Save user data to localStorage
-    const user = { name: formData.name, email: formData.email };
-    localStorage.setItem('user', JSON.stringify(user));
-    onSignUp(user); // Update the app state with the user data
+    onSignIn(storedUser); // Update the app state with the user data
     navigate('/profile'); // Redirect to the profile page
   };
 
   return (
     <div className="sign-up-container">
       <section className="hero">
-        <h1>Create Your Account</h1>
-        <p>Join JobBuster to unlock your career potential.</p>
+        <h1>Sign In</h1>
+        <p>Welcome back! Sign in to access your account.</p>
       </section>
       <form onSubmit={handleSubmit} className="sign-up-form">
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter your name"
-          />
-        </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -84,10 +62,10 @@ function SignUpPage({ onSignUp }) {
           />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="sign-up-button">Sign Up</button>
+        <button type="submit" className="sign-up-button">Sign In</button>
       </form>
     </div>
   );
 }
 
-export default SignUpPage;
+export default SignInPage;
