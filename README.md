@@ -1,12 +1,12 @@
 # JobBuster
 
-JobBuster is a modern job search application designed to help users find job opportunities, save their favorite jobs, and get career advice through an integrated chatbot assistant. The app features a sleek UI with dark mode support, persistent search history, and a favorites page for saved jobs.
+JobBuster is a modern job search application designed to help users find job opportunities, save their favorite jobs, and get career advice through an integrated AI chatbot assistant. The app features a sleek UI with dark mode support, persistent search history, and a favorites page for saved jobs.
 
 ## Features
 
-- **Job Search**: Search for jobs by keyword and location.
+- **AI powered Job Search**: Search for jobs by keyword and location.
 - **Favorites**: Save jobs to a favorites page for easy access.
-- **Chatbot Assistant**: Get career advice, resume tips, and interview preparation help.
+- **AI Chatbot Assistant**: Get career advice, resume tips, and interview preparation help.
 - **Dark Mode**: Toggle between light and dark themes.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Sign-Up Page**: Placeholder for user account creation.
@@ -66,7 +66,7 @@ JobBuster is a modern job search application designed to help users find job opp
 2. Access saved jobs on the "Favorites" page via the navigation bar.
 3. Remove jobs from favorites by clicking the heart icon again.
 
-### Chatbot Assistant
+### AI Chatbot Assistant
 1. Open the chatbot by clicking the 🌷 icon.
 2. Ask questions about career advice, resume tips, or interview preparation.
 3. Use quick prompts for common queries.
@@ -108,10 +108,6 @@ src/
 - Implement user authentication for personalized job searches.
 - Add the ability to apply directly to jobs from the app.
 - Improve chatbot responses with more context-aware suggestions.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
