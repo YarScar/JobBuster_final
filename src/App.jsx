@@ -18,6 +18,7 @@ import FavoritesPage from './pages/FavoritesPage';
 import { FavoritesProvider } from './context/FavoritesContext';
 
 function App() {
+  const [user, setUser] = useState(null); // State to manage the logged-in user
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
@@ -37,6 +38,14 @@ function App() {
     setDarkMode((prev) => !prev);
   };
 
+  const handleSignUp = (userData) => {
+    setUser(userData); // Set the user data after signing up
+  };
+
+  const handleLogout = () => {
+    setUser(null); // Clear the user data when logging out
+  };
+
   return (
     <FavoritesProvider>
       <Router>
@@ -49,12 +58,12 @@ function App() {
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
-          <Navbar />
+          <Navbar user={user} onLogout={handleLogout} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
             <Route path="/job/:id" element={<JobDetailsPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>

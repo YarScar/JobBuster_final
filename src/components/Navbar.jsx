@@ -20,7 +20,7 @@ function Navbar({ user, onLogout }) {
           </>
         ) : (
           <li>
-            <Link to="/signup" className="signup-btn">Sign Up / Sign In</Link>
+            <Link to="/signup" className="signup-btn">Sign Up</Link>
           </li>
         )}
       </ul>
