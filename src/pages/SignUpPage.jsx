@@ -39,7 +39,7 @@ function SignUp({ onSignUp }) {
     try {
       // Simulate sign-up logic
       onSignUp({ name: formData.name, email: formData.email });
-      navigate('/');
+      navigate('/'); // Ensure this redirects to the correct route
     } catch (err) {
       console.error('Sign-up error:', err);
       setError('An error occurred. Please try again.');
