@@ -16,7 +16,7 @@ function SignUp({ onSignUp }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -36,11 +36,14 @@ function SignUp({ onSignUp }) {
       return;
     }
 
-    // Pass the user data to the parent component
-    onSignUp({ name: formData.name, email: formData.email });
-
-    // Navigate to the home page
-    navigate('/'); // Ensure this redirects to the correct route
+    try {
+      // Simulate sign-up logic
+      onSignUp({ name: formData.name, email: formData.email });
+      navigate('/');
+    } catch (err) {
+      console.error('Sign-up error:', err);
+      setError('An error occurred. Please try again.');
+    }
   };
 
   return (
