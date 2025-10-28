@@ -40,7 +40,7 @@ function SignUp({ onSignUp }) {
     onSignUp({ name: formData.name, email: formData.email });
 
     // Navigate to the home page
-    navigate('/');
+    navigate('/'); // Ensure this redirects to the correct route
   };
 
   return (
