@@ -16,6 +16,7 @@ import './styles/SignUp.css';
 import JobDetailsPage from './pages/JobDetailsPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { FavoritesProvider } from './context/FavoritesContext';
+import WelcomePage from './pages/WelcomePage'; // Import the WelcomePage
 
 function App() {
   const [user, setUser] = useState(null); // State to manage the logged-in user
@@ -23,6 +24,7 @@ function App() {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
   });
+  const [showWelcome, setShowWelcome] = useState(true); // State to manage the WelcomePage visibility
 
   useEffect(() => {
     if (darkMode) {
@@ -45,6 +47,14 @@ function App() {
   const handleLogout = () => {
     setUser(null); // Clear the user data when logging out
   };
+
+  const handleContinue = () => {
+    setShowWelcome(false); // Hide the WelcomePage when the user clicks "Continue"
+  };
+
+  if (showWelcome) {
+    return <WelcomePage onContinue={handleContinue} />; // Render the WelcomePage first
+  }
 
   return (
     <FavoritesProvider>
