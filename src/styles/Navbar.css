@@ -218,3 +218,26 @@ body.dark-mode .nav-links a,
 body.dark-mode .logo {
   color: #e6eef8;
 }
+
+.user-name {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-right: 10px;
+}
+
+.logout-btn {
+  background: var(--gradient-2);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--glow-blue);
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
+}

@@ -14,10 +14,10 @@
   
   /* Light mode colors */
   --bg-gradient: linear-gradient(-45deg, #df8cf0, #805ca3, #d85efa, #a878f9);
-  --app-bg: rgba(225, 150, 240, 0.95);
+  --app-bg: rgba(227, 110, 250, 0.95);
   --text-primary: #8f16c7;
   --text-secondary: #523557;
-  --card-bg: rgb(89, 16, 93);
+  --card-bg: rgb(239, 139, 244);
   --border-color: #e82eb6;
   --input-bg: rgb(35, 1, 25);
 }
@@ -69,7 +69,7 @@ body {
 /* Dark Mode Toggle Button */
 .theme-toggle {
   position: fixed;
-  top: -13px;
+  top: -12px;
   right: 110%;
   background: var(--gradient-2);
   border: none;

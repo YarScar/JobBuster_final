@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SignUp.css';
 
-function SignUp() {
+function SignUp({ onSignUp }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -11,13 +11,11 @@ function SignUp() {
   });
   const [error, setError] = useState('');
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
@@ -38,6 +36,10 @@ function SignUp() {
       return;
     }
 
+    // Pass the user data to the parent component
+    onSignUp({ name: formData.name, email: formData.email });
+
+    // Navigate to the home page
     navigate('/');
   };
 
