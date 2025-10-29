@@ -221,7 +221,7 @@
   border: 2px solid var(--border-color);
   border-radius: 12px;
   background-color: white;
-  color: var(--text-primary);
+  color: rgb(39, 3, 49);
   font-size: 14px;
 }
 

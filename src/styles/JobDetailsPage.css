@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  background-color: rgb(188, 113, 202); /* Match the theme's container background */
+  background: var(--card-bg); /* Match the theme's container background */
   border-radius: 16px; /* Consistent border radius */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Consistent shadow */
   color: var(--text-primary); /* Match the theme's primary text color */
@@ -74,4 +74,15 @@
 .apply-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
+}
+
+.apply-button.applied {
+  background: #10b981; /* Green background for the "Applied" state */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5); /* Adjusted shadow */
+  cursor: not-allowed; /* Disable the cursor */
+}
+
+.apply-button.applied:hover {
+  transform: none; /* Remove hover effect for the "Applied" state */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5); /* Keep the shadow consistent */
 }

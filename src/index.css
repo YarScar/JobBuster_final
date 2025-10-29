@@ -69,8 +69,8 @@ body {
 /* Dark Mode Toggle Button */
 .theme-toggle {
   position: fixed;
-  top: -12px;
-  right: 110%;
+  top: -5px;
+  left: -115px;
   background: var(--gradient-2);
   border: none;
   width: 50px;

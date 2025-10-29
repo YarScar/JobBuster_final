@@ -10,17 +10,22 @@
     display: flex;
     gap: 1rem;
     width: 96%;
+    max-width: 900px; /* ensure bar doesn't span full width */
+    margin: 0 auto; /* center within parent flexbox */
     height: 30px;
-    max-width: 900px;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
+    justify-content: center; /* center contents horizontally */
+    align-items: center; /* center contents vertically */
 }
 
 .search-bar input {
     flex: 1;
-    padding: 1rem; /* Fixed invalid padding */
+    min-width: 160px; /* don't collapse too small */
+    max-width: 520px; /* prevent overly wide inputs on large screens */
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
