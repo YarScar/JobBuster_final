@@ -51,7 +51,7 @@
   padding: 8px; /* Reduced padding */
   border: 2px solid var(--border-color);
   border-radius: 20px; /* Rounded corners */
-  background: var(--input-bg);
+  background-color: white;
   color: var(--text-primary);
   font-size: 14px;
   text-align: center; /* Center the text inside the input */

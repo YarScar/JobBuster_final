@@ -18,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(188, 113, 202);
+  background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
@@ -160,8 +160,7 @@
   border: 2px solid rgb(140, 49, 156);
   border-radius: 16px;
   margin-bottom: 25px;
-  /* background: var(--card-bg); */
-  background-color: rgb(192, 96, 209);
+  background: var(--card-bg);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   position: relative;

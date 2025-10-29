@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  background: var(--card-bg); /* Match the theme's container background */
+  background-color: rgb(188, 113, 202); /* Match the theme's container background */
   border-radius: 16px; /* Consistent border radius */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Consistent shadow */
   color: var(--text-primary); /* Match the theme's primary text color */
