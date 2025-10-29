@@ -121,7 +121,7 @@ function Home() {
           onClick={toggleAssistant}
           aria-label="Toggle job assistant"
         >
-          🌷
+          🤖
         </button>
       </section>
     </>

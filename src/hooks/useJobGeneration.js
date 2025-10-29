@@ -27,7 +27,8 @@ export function useJobGeneration() {
                         - location (string)
                         - salary (string)
                         - description (string, max 200 characters)
-                        - requirements (array of strings).`,
+                        - requirements (array of strings).
+                        Generate 7 job results.`,
             },
             {
               role: "user",
