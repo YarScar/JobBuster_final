@@ -26,7 +26,7 @@
 /* Job Assistant Overlay Styles */
 .job-assistant-overlay {
   position: fixed;
-  top: 250px;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -220,7 +220,7 @@
   padding: 12px 16px;
   border: 2px solid var(--border-color);
   border-radius: 12px;
-  background: var(--input-bg);
+  background-color: white;
   color: var(--text-primary);
   font-size: 14px;
 }
