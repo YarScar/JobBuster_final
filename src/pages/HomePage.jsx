@@ -104,7 +104,7 @@ function Home() {
         ) : jobs.length > 0 ? (
           jobs.map((job) => <JobCard key={job.id} job={job} />)
         ) : (
-          <p>Search a job!</p>
+          <p>Explore jobs and locations you are interested in!</p>
         )}
       </section>
 

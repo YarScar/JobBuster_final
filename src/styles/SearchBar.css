@@ -13,8 +13,7 @@
     max-width: 900px; /* ensure bar doesn't span full width */
     margin: 0 auto; /* center within parent flexbox */
     height: 30px;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     justify-content: center; /* center contents horizontally */

@@ -21,7 +21,7 @@ function App() {
   // Auth/user state removed (signup/profile/logout removed)
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark';
+    return savedTheme === 'light' ? false : true; // Default to dark mode if no theme is saved
   });
   const [showWelcome, setShowWelcome] = useState(true); // State to manage the WelcomePage visibility
 

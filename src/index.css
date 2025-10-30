@@ -1,15 +1,14 @@
 /* CSS Variables for easy color management */
 :root {
   --primary-blue: #eb25eb;
-  --primary-purple: #7c3aed;
-  --light-blue: #fa60b7;
+  --primary-purple: #c63aed;
   --light-purple: #a78bfa;
   --dark-blue: #9c1eaf;
   --dark-purple: #6d28d9;
-  --gradient-1: linear-gradient(135deg, #ea66e3 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #d650ce 0%, #7c3aed 100%);
-  --gradient-3: linear-gradient(135deg, #e52cd3 0%, #a78bfa 100%);
-  --glow-blue: rgba(192, 37, 235, 0.6);
+  --gradient-1: linear-gradient(135deg, #d82cb6 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #d650ce 0%, #b13aed 100%);
+  --gradient-3: linear-gradient(135deg, #e52cd3 0%, #cd5ade 100%);
+  --glow-blue: rgba(235, 37, 172, 0.6);
   --glow-purple: rgba(124, 58, 237, 0.6);
   
   /* Light mode colors */
@@ -49,7 +48,7 @@ body {
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-primary);
+  color: rgb(104, 5, 135);
   transition: background 0.3s ease, color 0.3s ease;
 }
 
