@@ -24,13 +24,13 @@
 
 /* Dark mode colors */
 body.dark-mode {
-  --bg-gradient: linear-gradient(-45deg, #1a1a2e, #16213e, #0f0f23, #551c5d);
-  --app-bg: rgba(30, 30, 46, 0.95);
+  --bg-gradient: linear-gradient(-45deg, #0f0f1a, #0d1225, #070711, #2a0e2e);
+  --app-bg: rgba(13, 13, 22, 0.92);
   --text-primary: #e5e7eb; /* Light text for dark mode */
   --text-secondary: #9ca3af; /* Light secondary text */
-  --card-bg: rgba(45, 45, 60, 0.9);
-  --border-color: #374151;
-  --input-bg: rgba(55, 65, 81, 0.8);
+  --card-bg: rgba(20, 20, 28, 0.85);
+  --border-color: #1f2937;
+  --input-bg: rgba(26, 32, 44, 0.8);
 }
 
 /* Make sure root and body take full width/height and allow centering */
@@ -69,8 +69,8 @@ body {
 /* Dark Mode Toggle Button */
 .theme-toggle {
   position: fixed;
-  top: -5px;
-  left: -115px;
+  top: 35px;
+  left: 140px;
   background: var(--gradient-2);
   border: none;
   width: 50px;
@@ -91,26 +91,7 @@ body {
   box-shadow: 0 6px 25px var(--glow-blue), 0 0 40px var(--glow-purple);
 }
 
-.signup-btn {
-  background: var(--gradient-2);
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px var(--glow-blue);
-}
-
-.signup-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 25px var(--glow-purple), 0 0 40px var(--glow-blue);
-}
-
-.signup-btn:active {
-  transform: translateY(-1px);
-}
+/* Removed signup button styles (signup/profile removed) */
 
 /* Hero Section */
 .hero {

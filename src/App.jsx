@@ -4,9 +4,6 @@ import Navbar from './components/Navbar';
 import Home from './pages/HomePage';
 import About from './pages/AboutPage';
 import Contact from './pages/ContactPage';
-import SignUp from './pages/SignUpPage';
-import SignInPage from './pages/SignInPage';
-import ProfilePage from './pages/ProfilePage';
 import Stars from './components/Stars';
 import './index.css';
 import './styles/Navbar.css';
@@ -14,17 +11,14 @@ import './styles/JobCard.css';
 import './App.css';
 import './styles/SearchBar.css';
 import './styles/ChatBot.css';
-import './styles/SignUp.css';
+// Removed signup/profile related pages and styles
 import JobDetailsPage from './pages/JobDetailsPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { FavoritesProvider } from './context/FavoritesContext';
 import WelcomePage from './pages/WelcomePage'; // Import the WelcomePage
 
 function App() {
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  // Auth/user state removed (signup/profile/logout removed)
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme === 'dark';
@@ -45,17 +39,7 @@ function App() {
     setDarkMode((prev) => !prev);
   };
 
-  const handleSignUp = (userData) => {
-    setUser(userData); // Set the user data after signing up
-  };
-
-  const handleSignIn = (userData) => {
-    setUser(userData); // Set the user data after signing in
-  };
-
-  const handleLogout = () => {
-    setUser(null); // Clear the user data when logging out
-  };
+  // handleSignUp / handleSignIn / handleLogout removed
 
   const handleContinue = () => {
     setShowWelcome(false); // Hide the WelcomePage when the user clicks "Continue"
@@ -77,14 +61,12 @@ function App() {
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
-          <Navbar user={user} onLogout={handleLogout} />
+          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
-            <Route path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
-            <Route path="/profile" element={<ProfilePage user={user} onLogout={handleLogout} />} />
+            {/* Signup / Signin / Profile routes removed */}
             <Route path="/job/:id" element={<JobDetailsPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>

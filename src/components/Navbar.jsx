@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Navbar({ user, onLogout }) {
+function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">JobBuster</div>
@@ -9,20 +9,6 @@ function Navbar({ user, onLogout }) {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/favorites">Favorites</Link></li>
-        {user ? (
-          <>
-            <li className="user-name">Welcome, {user.name}</li>
-            <li>
-              <button onClick={onLogout} className="logout-btn">
-                Log Out
-              </button>
-            </li>
-          </>
-        ) : (
-          <li>
-            <Link to="/signup" className="signup-btn">Sign In / Sign Up</Link>
-          </li>
-        )}
       </ul>
     </nav>
   );

@@ -110,37 +110,13 @@
 }
 
 .logo {
-  font-size: 48px; /* Original size */
+  font-size: 48px;
   font-weight: bold;
   text-align: center;
   margin: 20px 0;
-  color: var(--primary-purple); /* Original color */
-  background: var(--gradient-2); /* Gradient background */
+  background: var(--gradient-2);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite, scaleUp 5s ease-in-out infinite; /* Add shimmer and scaling animations */
   cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.2); /* Slightly enlarge on hover */
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200%;
-  }
-  100% {
-    background-position: 200%;
-  }
-}
-
-@keyframes scaleUp {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
 }

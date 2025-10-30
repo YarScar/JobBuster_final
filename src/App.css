@@ -1,15 +1,14 @@
 /* Main app container with glass effect */
 .app {
-  width: 100%;
+  width: 98%;
   height: 180%;
-  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
   /* background: var(rgb(114, 58, 128)); */
-  background-color: rgb(98, 48, 144);
+  /* background-color: rgb(98, 48, 144); */
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
   border-radius: 20px;
   margin-top: 20px;
   margin-bottom: 20px;

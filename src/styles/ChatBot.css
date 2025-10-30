@@ -2,7 +2,7 @@
 .assistant-toggle {
   position: fixed;
   top: 35px;
-  left: 145px;
+  left: 200px;
   background: var(--gradient-1);
   border: none;
   width: 50px;
